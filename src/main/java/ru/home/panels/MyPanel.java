@@ -3,7 +3,7 @@ package ru.home.panels;
 import javax.swing.*;
 import java.awt.*;
 
-class MyPanel extends JPanel{
+public class MyPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
@@ -16,7 +16,7 @@ class MyPanel extends JPanel{
         g2d.fillRect(0, 0, 10, 600);
         g2d.fillRect(0, 590, 600, 10);
 
-        for (int i = 0; i <= Main.m - 1; i++){
+        for (int i = 0; i <= Main.m - 1; i++) {
             g2d.fillRect(Main.A[i][0], Main.A[i][1], Main.A[i][2], Main.h);
             //вот сюда надо вставить картинку
         }

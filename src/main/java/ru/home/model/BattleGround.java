@@ -1,6 +1,11 @@
 package ru.home.model;
 
 import ru.home.PropertiesProvider;
+import ru.home.panels.ActionImpl;
+import ru.home.panels.MyPanel;
+
+import javax.swing.*;
+import java.awt.event.KeyListener;
 
 public class BattleGround {
     private int width;
@@ -8,8 +13,13 @@ public class BattleGround {
     private int countBlocks;
     private int countHog;
     private int gravity;
+    private Block[] blocks;
+    private Hedgehog[] hogs;
+
+    static Timer timer;
+
     private int[][] arrayBlocksInt = {{0, 590, 600}, {160, 560, 70}, {210, 540, 70}, {270, 505, 70}, {190, 480, 70}, {150, 460, 70}, {350, 520, 70}, {420, 490, 70}};
-    private int[][] arrayHogsInt = {{500, 580, 5}, {200, 580, 5}};
+    private int[][] arrayHogsInt = {new Hedgehog(500, 580, 9), {200, 580, 5}};
 
     public BattleGround() {
         this.width = Integer.parseInt(PropertiesProvider.getAppProperties().getProperty("battleGround.weight"));
@@ -17,6 +27,7 @@ public class BattleGround {
         this.countBlocks = Integer.parseInt(PropertiesProvider.getAppProperties().getProperty("battleGround.countBlocks"));
         this.countHog = Integer.parseInt(PropertiesProvider.getAppProperties().getProperty("battleGround.countHog"));
         this.gravity = Integer.parseInt(PropertiesProvider.getAppProperties().getProperty("battleGround.gravity"));
+        this.blocks = createArrayBlocks(countBlocks);
     }
 
     public int getWidth() {
@@ -74,15 +85,26 @@ public class BattleGround {
         return arrayHogs;
     }
 
-    public void start(){
+
+
+    public static void start(){
+
+        JFrame window = new JFrame("Super-puper gaaaame");
+        window.setSize(400, 600);
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        MyPanel panel = new MyPanel();
+        panel.setFocusable(true);
+        panel.addKeyListener(new ActionImpl());
+        window.add(panel);
+        window.setVisible(true);
+
         BattleGround battleGround = new BattleGround();
         battleGround.setCountBlocks(7);
         battleGround.setCountHog(2);
         battleGround.setHeight(600);
         battleGround.setWidth(600);
         battleGround.setGravity(1);
-
     }
-
 }
 
