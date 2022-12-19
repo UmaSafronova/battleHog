@@ -10,7 +10,7 @@ public class Block {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.length = length;
-        this.height = 10;
+        this.height = 10; //взять из game.properties
     }
 
     public int getxPosition() {
@@ -53,6 +53,28 @@ public class Block {
                 && hedgehog.getxPosition() + hedgehog.getRadius() <= xPosition + length){
             if (hedgehog.getyPosition() <= yPosition + height
                     && hedgehog.getyPosition() + 2 * hedgehog.getRadius() >= yPosition - height){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hegRight(Hedgehog hedgehog){
+        if ((hedgehog.getyPosition() + 2 * hedgehog.getRadius() >= yPosition
+                && hedgehog.getyPosition() + 2 * hedgehog.getRadius() <= xPosition - height)
+                || (hedgehog.getyPosition() >= yPosition) && hedgehog.getyPosition() <= xPosition - height){
+            if (hedgehog.getxPosition() <= xPosition + length && hedgehog.getxPosition() + 2 * hedgehog.getRadius() >= xPosition + length){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hegLeft(Hedgehog hedgehog){
+        if ((hedgehog.getyPosition() + 2 * hedgehog.getRadius() >= yPosition
+                && hedgehog.getyPosition() + 2 * hedgehog.getRadius() <= xPosition - height)
+                || (hedgehog.getyPosition() >= yPosition) && hedgehog.getyPosition() <= xPosition - height){
+            if (hedgehog.getxPosition() + 2 * hedgehog.getRadius() >= xPosition && hedgehog.getxPosition() <= xPosition){
                 return true;
             }
         }

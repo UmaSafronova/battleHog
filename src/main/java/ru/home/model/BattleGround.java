@@ -10,16 +10,17 @@ import java.awt.event.KeyListener;
 public class BattleGround {
     private int width;
     private int height;
-    private int countBlocks;
-    private int countHog;
-    private int gravity;
-    private Block[] blocks;
-    private Hedgehog[] hogs;
+    private static int countBlocks;
+    private static int countHog;
+    private static int gravity;
 
     static Timer timer;
 
     private int[][] arrayBlocksInt = {{0, 590, 600}, {160, 560, 70}, {210, 540, 70}, {270, 505, 70}, {190, 480, 70}, {150, 460, 70}, {350, 520, 70}, {420, 490, 70}};
-    private int[][] arrayHogsInt = {new Hedgehog(500, 580, 9), {200, 580, 5}};
+    static int[][] arrayHogsInt = {{500, 580, 9}, {200, 580, 5}};
+    private Block[] blocks = new Block[countBlocks];
+    private Hedgehog[] hogs = new Hedgehog[countHog];
+
 
     public BattleGround() {
         this.width = Integer.parseInt(PropertiesProvider.getAppProperties().getProperty("battleGround.weight"));
@@ -61,10 +62,6 @@ public class BattleGround {
         this.gravity = gravity;
     }
 
-    private Block createBlock(int xPosition, int yPosition, int length) {
-        return new Block(xPosition, yPosition, length);
-    }
-
     private Block[] createArrayBlocks(int countBlocks) { //пока countBlocks нужен для идеалогии, но данные уже введены
         Block[] arrayBlocks = new Block[countBlocks];
         for (int i = 0; i <= countBlocks - 1; i++){
@@ -73,14 +70,10 @@ public class BattleGround {
         return arrayBlocks;
     }
 
-    private Hedgehog createHog(int xPosition, int yPosition, int radius) {
-        return new Hedgehog(xPosition, yPosition, radius);
-    }
-
     private Hedgehog[] createArrayHogs(int countHog) { //аналогично нужен только формально
         Hedgehog[] arrayHogs = new Hedgehog[countHog];
         for (int i = 0; i <= countBlocks - 1; i++){
-            arrayHogs[i] = new Hedgehog(arrayHogsInt[i][0], arrayHogsInt[i][1], arrayHogsInt[i][2]);
+            arrayHogs[i] = new Hedgehog(i, arrayHogsInt[i][0], arrayHogsInt[i][1], arrayHogsInt[i][2]);
         }
         return arrayHogs;
     }
@@ -105,6 +98,8 @@ public class BattleGround {
         battleGround.setHeight(600);
         battleGround.setWidth(600);
         battleGround.setGravity(1);
+
+
     }
 }
 
