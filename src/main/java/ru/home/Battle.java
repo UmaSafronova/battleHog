@@ -12,22 +12,13 @@ public class Battle {
     static int[][] blocksArray = {{0, 590, 600}, {160, 560, 70}, {210, 540, 70}, {270, 505, 70}, {190, 480, 70}, {150, 460, 70}, {350, 520, 70},
             {420, 490, 70}};
     static int[][] hedgehogArray = {{500, 580, 5, 0, 0}, {200, 580, 5, 0, 0}};
-//    static int x2 = 200, y2 = 580, r2 = 10, vx2 = 0, vy2 = 0;
-//    static int xPosition = 500, yPosition = 580, radius = 10, xSpeed = 0, ySpeed = 0;
-//    static int scoreFirstHog = 0;
-//    static int scoreSecondHog = 0;
     static int already_credited1 = 0;//разобраться, что ето такое
     static int already_credited2 = 0; //разобраться, что ето такое
 
+    static Timer timer;
 
     static Audio jump = new Audio("src/cartoon-spring-boing-01.WAV", 0.68);
-//    static String[] UP = {"VK_UP", "VK_W"};
-//    static String[] R = {"VK_RIGHT", "VK_D"};
-//    static String[] L = {"VK_LEFT", "VK_A"};
-//    static int m = blocksArray.length;
-//    static int n = hedgehogArray.length;
-//    static int h = 10;
-//    static int g = 1;
+
     static String strscore = "Score";
     static String strscore1 = Integer.toString(scoreFirstHog);
     static String strscore2 = Integer.toString(scoreSecondHog);
@@ -90,29 +81,4 @@ public class Battle {
         return 0;
     }
 
-    static Timer timer;
-
-    public static void startBattle() {
-        BattleGround.start();
-
-
-//        JFrame window = new JFrame("Super-puper gaaaame");
-//        window.setSize(400, 600);
-//        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//
-//        MyPanel panel = new MyPanel();
-//
-//        panel.setFocusable(true);
-//        panel.addKeyListener(new KeyListener());
-//
-//        window.add(panel);
-//        window.setVisible(true);
-//
-//
-//        ActionListener listener = new JComboBox<>();
-//
-//        timer = new Timer(1, listener);
-//        timer.start();
-
-    }
 }

@@ -1,13 +1,26 @@
 package ru.home.panels;
 
 import ru.home.Main;
+import ru.home.model.Hedgehog;
 
 import java.awt.event.KeyEvent;
 
 public class ActionImpl implements Action {
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent key, Hedgehog hedgehog) {
+        switch (key.getKeyCode()) {
+            case KeyEvent.VK_RIGHT: {
+                hedgehog.setxSpeed(2);
+            }
+            case KeyEvent.VK_LEFT: {
+                hedgehog.setxSpeed(-2);
+            }
+        }
+
+
+
+
         if (e.getKeyCode() == KeyEvent.VK_RIGHT){
             xSpeed = 2;
         }
