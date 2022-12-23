@@ -18,7 +18,7 @@ public class BattleGround {
 
     private int[][] arrayBlocksInt = {{0, 590, 600}, {160, 560, 70}, {210, 540, 70}, {270, 505, 70}, {190, 480, 70}, {150, 460, 70}, {350, 520, 70}, {420, 490, 70}};
     static int[][] arrayHogsInt = {{500, 580, 9}, {200, 580, 5}};
-    private Block[] blocks = new Block[countBlocks];
+    private Block[] blocks;
     private Hedgehog[] hogs = new Hedgehog[countHog];
 
 
@@ -60,6 +60,14 @@ public class BattleGround {
     }
     public void setGravity(int gravity) {
         this.gravity = gravity;
+    }
+
+    public Block[] getBlocks() {
+        return blocks;
+    }
+
+    public Hedgehog[] getHogs() {
+        return hogs;
     }
 
     private Block[] createArrayBlocks(int countBlocks) { //пока countBlocks нужен для идеалогии, но данные уже введены

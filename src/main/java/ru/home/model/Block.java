@@ -37,6 +37,10 @@ public class Block {
         this.length = length;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     public boolean hegAbove(Hedgehog hedgehog){
         if (hedgehog.getxPosition() + hedgehog.getRadius() >= xPosition
                 && hedgehog.getxPosition() + hedgehog.getRadius() <= xPosition + length){

@@ -94,52 +94,55 @@ public class Hedgehog {
         }
         return false;
     }
-    public void update(){
+    public void updatePosition(BattleGround battleGround){
         if (xSpeed < 0 && xPosition <= 0){ //проверяем, заходит ли за левую границу
             xSpeed = 0;
             xPosition = 0;
         }
-        if (xSpeed + 2 * radius >= BattleGround.getWidth() && xSpeed > 0){ //проверяем, заходит ли за правую границу
+        if (xSpeed + 2 * radius >= battleGround.getWidth() && xSpeed > 0){ //проверяем, заходит ли за правую границу
             xSpeed = 0;
-            xPosition = BattleGround.getWidth() - 2 * radius;
+            xPosition = battleGround.getWidth() - 2 * radius;
         }
         Boolean check = false;
-        for (int j = 0; j <= BattleGround.getCountBlocks() - 1; j++){
-            if (blocks[j].hegAbove(this) == true){ //Посмотреть, где лежит blocks[]
+        for (int j = 0; j < battleGround.getBlocks().length; j++){
+            if (battleGround.getBlocks()[j].hegAbove(this)){ //Посмотреть, где лежит blocks[]
                 check = true;
                 if (ySpeed <= 0){
                     ySpeed = 0;
-                    yPosition = blocks[j].getyPosition() - 2 * radius;
+                    yPosition = battleGround.getBlocks()[j].getyPosition() - 2 * radius;
                 }
             }
-            if (blocks[j].hegDown(this) == true){
+
+            if (battleGround.getBlocks()[j].hegDown(this)){
                 if (ySpeed >= 0){
-                    yPosition = blocks[j].getyPosition() + blocks[j].getHeight();
+                    yPosition = battleGround.getBlocks()[j].getyPosition()
+                            + battleGround.getBlocks()[j].getHeight();
                     ySpeed = -1 * ySpeed;
                 }
             }
-            if (blocks[j].hegRight(this) == true){
+            if (battleGround.getBlocks()[j].hegRight(this)){
                 if (xSpeed <= 0){
-                    xPosition = blocks[j].getxPosition() + blocks[j].getLength() + 2; //чтобы ёж не прилипал к стенкам
+                    xPosition = battleGround.getBlocks()[j].getxPosition()
+                            + battleGround.getBlocks()[j].getLength() + 2; //чтобы ёж не прилипал к стенкам
                     xSpeed = 0; //чтобы ёж не прилипал к стенкам
                 }
             }
-            if (blocks[j].hegLeft(this) == true){
+            if (battleGround.getBlocks()[j].hegLeft(this)){
                 if (xSpeed >= 0){
-                    xPosition = blocks[j].getxPosition() - 2 * radius - 2; //аналогично чтобы ёж не застрял
+                    xPosition = battleGround.getBlocks()[j].getxPosition() - 2 * radius - 2; //аналогично чтобы ёж не застрял
                     xSpeed = 0;
                 }
             }
         }
-        for (int i = 0; i <= BattleGround.getCountHog() - 1; i++){
+        for (int i = 0; i < battleGround.getHogs().length; i++){
             if (i != number){
-                if (this.hegAboveHeg(hogs[i]) == true){
+                if (this.hegAboveHeg(battleGround.getHogs()[i])){
                     xSpeed = 0;
                     ySpeed = 0;
                     xPosition = BattleGround.arrayHogsInt[number][0]; //стартовые координаты
                     yPosition = BattleGround.arrayHogsInt[number][1]; //см выше
                 }
-                if (this.hegDownHeg(hogs[i]) == true){
+                if (this.hegDownHeg(battleGround.getHogs()[i])){
                     score += 1;
                 }
             }
@@ -147,7 +150,7 @@ public class Hedgehog {
         yPosition -= ySpeed;
         xPosition += xSpeed;
         if (check == false){
-            ySpeed -= BattleGround.getGravity();
+            ySpeed -= battleGround.getGravity();
         }
     }
 }
